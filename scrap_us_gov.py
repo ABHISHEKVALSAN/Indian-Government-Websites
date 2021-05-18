@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-def getUrl(ext):
+def get_url(ext):
 	url="https://www.usa.gov"+str(ext)
 	resp=requests.get(url)
 	if resp.status_code==200:
@@ -12,9 +12,9 @@ def getUrl(ext):
 			try:
 				if heading.text=="Website:":
 					filename="tempUS.txt"
-				       	f=open(filename,"a+")
+					f=open(filename,"a+")
 					f.write(i.find("a")['href'])
-					print i.find("a")['href']
+					print(i.find("a")['href'])
 					f.close()
 			except:
 				pass
@@ -27,7 +27,7 @@ def main(s):
 		sites =soup.findAll("a",{"class":"url"})
 		sites=sites[7:]
 		for i in sites:
-			getUrl(i['href']) 
+			get_url(i['href'])
 
 if __name__=="__main__":
 	s="abcdefghijklmnoprstuvw"
